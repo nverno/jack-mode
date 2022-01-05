@@ -180,7 +180,8 @@
   ;; indentation
   (setq c-basic-offset jack-mode-indent-offset)
   (c-run-mode-hooks 'c-mode-common-hook)
-  (font-lock-add-keywords nil jack-mode--font-lock-builtins))
+  (when jack-mode-font-lock-builtins
+    (font-lock-add-keywords nil jack-mode--font-lock-builtins)))
 
 ;;;###autoload(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
 
