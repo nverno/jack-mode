@@ -87,24 +87,24 @@
        "alloc" "deAlloc" "peek" "poke")
       ("Sys"
        "error" "halt" "wait"))
-    "Jack OS API Builtin classes and methods."))
+    "Jack OS API Builtin classes and methods.")
 
-(defconst jack-mode--builtins-class-re
-  (eval-when-compile
-    (regexp-opt (mapcar #'car jack-mode-builtins) 'paren)))
+  (defconst jack-mode--builtins-class-re
+    (eval-when-compile
+      (regexp-opt (mapcar #'car jack-mode-builtins) 'paren)))
 
-(defconst jack-mode--builtins-method-res
-  (eval-when-compile
-    (mapcar (lambda (cls)
-              (concat "\\_<\\(" (car cls) "\\)\\_>"
-                      "\\(?:\\." (regexp-opt (cdr cls) 'symbols) "\\)?"))
-            jack-mode-builtins)))
+  (defconst jack-mode--builtins-method-res
+    (eval-when-compile
+      (mapcar (lambda (cls)
+                (concat "\\_<\\(" (car cls) "\\)\\_>"
+                        "\\(?:\\." (regexp-opt (cdr cls) 'symbols) "\\)?"))
+              jack-mode-builtins)))
 
-(defconst jack-mode--font-lock-builtins
-  (eval-when-compile
-    (mapcar (lambda (re) (list re '(1 'font-lock-function-name-face)
-                          '(2 'font-lock-function-name-face)))
-            jack-mode--builtins-method-res)))
+  (defconst jack-mode--font-lock-builtins
+    (eval-when-compile
+      (mapcar (lambda (re) (list re '(1 'font-lock-function-name-face)
+                            '(2 'font-lock-function-name-face)))
+              jack-mode--builtins-method-res))))
 
 ;;; Modifications of java's defaults -- `c-lang-constants'
 ;; 
@@ -165,6 +165,7 @@
 ;; Use C syntax
 (defvar jack-mode-syntax-table nil)
 
+;;;###autoload
 (define-derived-mode jack-mode prog-mode "Jack"
   "Major mode for editing jack files.
 
