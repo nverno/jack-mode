@@ -67,6 +67,12 @@
   :type 'boolean
   :group 'jack-mode)
 
+(defcustom jack-mode-compiler "JackCompiler"
+  "Path to Jack compiler, eg. nand2tetris/tools/JackCompiler.sh"
+  :type 'string
+  :group 'jack-mode
+  :safe 'stringp)
+
 (eval-and-compile
   (defconst jack-mode-builtins
     '(("Math"
@@ -165,6 +171,21 @@
 ;; Use C syntax
 (defvar jack-mode-syntax-table nil)
 
+;;; Compilation
+(defvar jack-mode-error-regexp-alist
+  '((jack-1 "In \\([^ ]+\\) (line \\([0-9]+\\)):" 1 2))
+  "Regexps to match error messages from reference compiler,
+ie. nand2tetris/tools/JackCompiler.sh")
+
+(defun jack-mode-compilation-hook ()
+  (unless (assoc 'jack-1 compilation-error-regexp-alist-alist)
+    (mapc (lambda (elem)
+            (push (car elem) compilation-error-regexp-alist)
+            (push elem compilation-error-regexp-alist-alist))
+          jack-mode-error-regexp-alist)
+    (remove-hook 'jack-mode-compilation-hook 'compilation-mode-hook)))
+(add-hook 'compilation-mode-hook #'jack-mode-compilation-hook)
+
 ;;;###autoload
 (define-derived-mode jack-mode prog-mode "Jack"
   "Major mode for editing jack files.
@@ -181,6 +202,9 @@
   ;; indentation
   (setq c-basic-offset jack-mode-indent-offset)
   (c-run-mode-hooks 'c-mode-common-hook)
+
+  (setq-local compile-command
+              (format "%s %s" jack-mode-compiler (buffer-file-name)))
   (when jack-mode-font-lock-builtins
     (font-lock-add-keywords nil jack-mode--font-lock-builtins)))
 
