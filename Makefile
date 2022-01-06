@@ -1,8 +1,8 @@
 all:
 	@
 
-README.md : el2markdown.el ebnf-mode.el
-	emacs -batch -l $< ebnf-mode.el -f el2markdown-write-readme
+README.md : el2markdown.el jack-mode.el
+	emacs -batch -l $< jack-mode.el -f el2markdown-write-readme
 
 .INTERMEDIATE: el2markdown.el
 el2markdown.el:
