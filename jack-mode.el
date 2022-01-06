@@ -172,6 +172,9 @@
 (defvar jack-mode-syntax-table nil)
 
 ;;; Compilation
+(defvar compilation-error-regexp-alist-alist nil)
+(defvar compilation-error-regexp-alist nil)
+
 (defvar jack-mode-error-regexp-alist
   '((jack-1 "In \\([^ ]+\\) (line \\([0-9]+\\)):" 1 2))
   "Regexps to match error messages from reference compiler,
@@ -185,6 +188,18 @@ ie. nand2tetris/tools/JackCompiler.sh")
           jack-mode-error-regexp-alist)
     (remove-hook 'jack-mode-compilation-hook 'compilation-mode-hook)))
 (add-hook 'compilation-mode-hook #'jack-mode-compilation-hook)
+
+;;; Imenu
+(defvar imenu-generic-expression nil)
+
+(defvar jack-mode-imenu-expression
+  (eval-when-compile
+    (let ((decls (regexp-opt '("function" "constructor" "method")))
+          (type "[[:alnum:]]+")
+          (name "[[:alnum:]]+"))
+      `((nil ,(concat "^\\s-*\\<" decls "\\s-+" type "\\s-+"
+                      "\\(" name "\\)\\s-*(")
+             1)))))
 
 ;;;###autoload
 (define-derived-mode jack-mode prog-mode "Jack"
@@ -205,6 +220,7 @@ ie. nand2tetris/tools/JackCompiler.sh")
 
   (setq-local compile-command
               (format "%s %s" jack-mode-compiler (buffer-file-name)))
+  (setq-local imenu-generic-expression jack-mode-imenu-expression)
   (when jack-mode-font-lock-builtins
     (font-lock-add-keywords nil jack-mode--font-lock-builtins)))
 
