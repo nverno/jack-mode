@@ -222,7 +222,7 @@ ie. nand2tetris/tools/JackCompiler.sh")
               (format "%s %s" jack-mode-compiler (buffer-file-name)))
   (setq-local imenu-generic-expression jack-mode-imenu-expression)
   (when jack-mode-font-lock-builtins
-    (font-lock-add-keywords nil jack-mode--font-lock-builtins)))
+    (font-lock-add-keywords nil jack-mode--font-lock-builtins 'append)))
 
 ;;;###autoload(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
 
