@@ -155,10 +155,13 @@
   "Default expressions to highlight in `jack-mode'.")
 
 (defun jack-mode-font-lock-keywords-2 ()
+  "Jack mode font-locking."
   (c-compose-keywords-list jack-font-lock-keywords-2))
 (defun jack-mode-font-lock-keywords-3 ()
+  "Jack mode font-locking."
   (c-compose-keywords-list jack-font-lock-keywords-3))
 (defun jack-mode-font-lock-keywords ()
+  "Jack mode font-locking."
   (c-compose-keywords-list jack-font-lock-keywords))
 
 ;; Use C syntax
@@ -173,6 +176,7 @@
   "Regexps to match error messages from reference compiler, ie. nand2tetris/tools/JackCompiler.sh.")
 
 (defun jack-mode-compilation-hook ()
+  "Setup `jack-mode' compilation."
   (unless (assoc 'jack-1 compilation-error-regexp-alist-alist)
     (mapc (lambda (elem)
             (push (car elem) compilation-error-regexp-alist)
