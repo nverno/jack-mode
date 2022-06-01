@@ -35,9 +35,10 @@
 ;;
 ;;; Code:
 (eval-when-compile
-  (require 'cl-lib)
-  (require 'cc-langs)
-  (require 'cc-fonts))
+  (require 'cl-lib))
+
+(require 'cc-langs)
+(require 'cc-fonts)
 (require 'cc-mode)
 
 (defgroup jack-mode nil
