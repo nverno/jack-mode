@@ -61,7 +61,7 @@
   :group 'jack-mode)
 
 (defcustom jack-mode-compiler "JackCompiler"
-  "Path to Jack compiler, eg. nand2tetris/tools/JackCompiler.sh"
+  "Path to Jack compiler, eg. nand2tetris/tools/JackCompiler.sh."
   :type 'string
   :group 'jack-mode
   :safe 'stringp)
@@ -170,8 +170,7 @@
 
 (defvar jack-mode-error-regexp-alist
   '((jack-1 "In \\([^ ]+\\) (line \\([0-9]+\\)):" 1 2))
-  "Regexps to match error messages from reference compiler,
-ie. nand2tetris/tools/JackCompiler.sh")
+  "Regexps to match error messages from reference compiler, ie. nand2tetris/tools/JackCompiler.sh.")
 
 (defun jack-mode-compilation-hook ()
   (unless (assoc 'jack-1 compilation-error-regexp-alist-alist)
@@ -198,7 +197,7 @@ ie. nand2tetris/tools/JackCompiler.sh")
 (define-derived-mode jack-mode prog-mode "Jack"
   "Major mode for editing jack files.
 
-\\{jack-mode-map"
+\\{jack-mode-map}"
   :after-hook (c-update-modeline)
   :syntax-table c-mode-syntax-table     ; C-style comments
 
