@@ -1,4 +1,4 @@
-;;; jack-mode.el --- major mode for Jack language -*- lexical-binding: t; -*-
+;;; jack-mode.el --- Major mode for Jack language -*- lexical-binding: t; -*-
 ;;
 ;; This is free and unencumbered software released into the public domain.
 ;;
@@ -7,6 +7,7 @@
 ;; URL: https://github.com/nverno/jack-mode
 ;; Package-Requires: ((emacs "27.1"))
 ;; Created: 21 December 2021
+;; Version: 1.0.0
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -26,8 +27,6 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 ;;; Commentary:
-;;
-;;; Description:
 ;;
 ;;  A major mode for editing Jack programming language files. The Jack language is
 ;;  developed as part of the Nand2Tetris coures (available on Coursera).
@@ -120,18 +119,18 @@
 
 (eval-when-compile
   ;; un/define c-lang-defconsts
-  (defmacro jack:def-c-consts (&rest kwds)
+  (defmacro jack-def-c-consts (&rest kwds)
     (macroexp-progn
      (cl-loop for (kwd . def) in kwds
               collect (if (stringp (car def))
                           `(c-lang-defconst ,kwd jack ',def)
                         `(c-lang-defconst ,kwd jack ,@def)))))
-  (defmacro jack:undef-c-consts (&rest kwds)
+  (defmacro jack-undef-c-consts (&rest kwds)
     (macroexp-progn
      (cl-loop for kwd in kwds
         collect `(c-lang-defconst ,kwd jack nil)))))
 
-(jack:def-c-consts
+(jack-def-c-consts
  (c-keywords "class" "constructor" "method" "function"
              "var" "field" "static"
              "do" "let" "if" "while" "else" "return"
@@ -166,8 +165,8 @@
 (defvar jack-mode-syntax-table nil)
 
 ;;; Compilation
-(defvar compilation-error-regexp-alist-alist nil)
-(defvar compilation-error-regexp-alist nil)
+(defvar compilation-error-regexp-alist-alist)
+(defvar compilation-error-regexp-alist)
 
 (defvar jack-mode-error-regexp-alist
   '((jack-1 "In \\([^ ]+\\) (line \\([0-9]+\\)):" 1 2))
@@ -184,7 +183,7 @@ ie. nand2tetris/tools/JackCompiler.sh")
 (add-hook 'compilation-mode-hook #'jack-mode-compilation-hook)
 
 ;;; Imenu
-(defvar imenu-generic-expression nil)
+(defvar imenu-generic-expression)
 
 (defvar jack-mode-imenu-expression
   (eval-when-compile
