@@ -3,8 +3,9 @@
 ;; This is free and unencumbered software released into the public domain.
 ;;
 ;; Author: Noah Peart <noah.v.peart@gmail.com>
+;; Maintainer: Noah Peart <noah.v.peart@gmail.com>
 ;; URL: https://github.com/nverno/jack-mode
-;; Package-Requires: 
+;; Package-Requires: ((emacs "27.1"))
 ;; Created: 21 December 2021
 ;;
 ;; This file is not part of GNU Emacs.
@@ -32,13 +33,6 @@
 ;;  developed as part of the Nand2Tetris coures (available on Coursera).
 ;;
 ;;  This mode derives from `cc-mode', and inherits from `java-mode'.
-;;
-;;; Installation:
-;;
-;; Add this file to `load-path', or generate autoloads.
-;; ```lisp
-;; (require 'jack-mode)
-;; ```
 ;;
 ;;; Code:
 (eval-when-compile
