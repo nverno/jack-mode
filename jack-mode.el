@@ -41,30 +41,26 @@
 (require 'cc-fonts)
 (require 'cc-mode)
 
-(defgroup jack-mode nil
+(defgroup jack nil
   "Major mode for editing Jack language files."
   :group 'languages
   :prefix "jack-mode-")
 
 (defcustom jack-mode-indent-offset 2
   "Amount by which expressions are indented."
-  :type 'integer
-  :group 'jack-mode)
+  :type 'integer)
 
 (defcustom jack-mode-font-lock-extra-types java-font-lock-extra-types
   "List of extra types to recognize (regexps)."
-  :type 'sexp
-  :group 'jack-mode)
+  :type 'sexp)
 
 (defcustom jack-mode-font-lock-builtins t
   "Apply font-lock to Jack OS builtin classes and methods."
-  :type 'boolean
-  :group 'jack-mode)
+  :type 'boolean)
 
 (defcustom jack-mode-compiler "JackCompiler"
   "Path to Jack compiler, eg. nand2tetris/tools/JackCompiler.sh."
   :type 'string
-  :group 'jack-mode
   :safe 'stringp)
 
 (eval-and-compile
@@ -174,7 +170,8 @@
 
 (defvar jack-mode-error-regexp-alist
   '((jack-1 "In \\([^ ]+\\) (line \\([0-9]+\\)):" 1 2))
-  "Regexps to match error messages from reference compiler, ie. nand2tetris/tools/JackCompiler.sh.")
+  "Regexps to match error messages from reference compiler, ie.
+nand2tetris/tools/JackCompiler.sh.")
 
 (defun jack-mode-compilation-hook ()
   "Setup `jack-mode' compilation."
