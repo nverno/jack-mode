@@ -1,7 +1,5 @@
 ;;; jack-mode.el --- Major mode for Jack language -*- lexical-binding: t; -*-
-;;
-;; This is free and unencumbered software released into the public domain.
-;;
+
 ;; Author: Noah Peart <noah.v.peart@gmail.com>
 ;; Maintainer: Noah Peart <noah.v.peart@gmail.com>
 ;; URL: https://github.com/nverno/jack-mode
@@ -218,7 +216,8 @@ nand2tetris/tools/JackCompiler.sh.")
   (when jack-mode-font-lock-builtins
     (font-lock-add-keywords nil jack-mode--font-lock-builtins 'append)))
 
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
 
 (provide 'jack-mode)
 ;; Local Variables:
