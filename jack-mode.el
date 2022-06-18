@@ -218,7 +218,8 @@ nand2tetris/tools/JackCompiler.sh.")
   (when jack-mode-font-lock-builtins
     (font-lock-add-keywords nil jack-mode--font-lock-builtins 'append)))
 
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.jack\\'" . jack-mode))
 
 (provide 'jack-mode)
 ;; Local Variables:
