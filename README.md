@@ -7,6 +7,8 @@ developed as part of the Nand2Tetris coures (available on Coursera).
 
 This mode derives from `cc-mode`, and inherits from `java-mode`.
 
+For a major-mode using tree-sitter, see [jack-ts-mode](https://github.com/nverno/jack-ts-mode).
+
 ### Installation
 
 Add this file to `load-path`, or generate autoloads.
